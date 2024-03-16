@@ -15,12 +15,31 @@ const canvas = document.getElementById('canvas');
         // Generate random position, size, and color
         const x = Math.random() * canvas.width;
         const y = Math.random() * canvas.height;
-        const size = Math.floor(Math.random() * (20 - 5 + 1)) + 5; // Random size between 5 and 20
+        const size = Math.floor(Math.random() * (50 - 30 + 1)) + 30; // Random size between 5 and 20
         const color = '#' + (Math.random().toString(16) + '000000').substring(2, 8);
+        const shape = Math.floor(Math.random() * 4); // Random shape: 0 (circle), 1 (rectangle), 2 (triangle), 3 (square)
 
-        // Draw point with random size
+        // Draw point with random shape
         ctx.beginPath();
-        ctx.arc(x, y, size, 0, Math.PI * 2);
+        switch (shape) {
+            case 0: // Circle
+                ctx.arc(x, y, size, 0, Math.PI * 2);
+                break;
+            case 1: // Rectangle
+                ctx.rect(x - size / 2, y - size / 2, size, size * 2);
+                break;
+            case 2: // Triangle
+                ctx.moveTo(x, y - size / 2);
+                ctx.lineTo(x + size / 2, y + size / 2);
+                ctx.lineTo(x - size / 2, y + size / 2);
+                ctx.closePath();
+                break;
+            case 3: // Square
+                ctx.rect(x - size / 2, y - size / 2, size, size);
+                break;
+            default:
+                break;
+        }
         ctx.fillStyle = color;
         ctx.fill();
 
