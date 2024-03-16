@@ -32,7 +32,7 @@ const canvas = document.getElementById('canvas');
                 ctx.moveTo(x, y - size / 2);
                 ctx.lineTo(x + size / 2, y + size / 2);
                 ctx.lineTo(x - size / 2, y + size / 2);
-                ctx.closePath(); 
+                ctx.closePath();
                 break;
             case 3: // Square
                 ctx.rect(x - size / 2, y - size / 2, size, size);
